@@ -11,6 +11,18 @@ export default defineConfig({
   test: {
     environment: "jsdom",
   },
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://localhost:8080",
+        ws: true,
+        changeOrigin: true,
+        headers: {
+          "xc-token": "x3L6nLUHMHxa-ss4InsPHcEx10IGpk_ad0iTZVMQ",
+        },
+      },
+    },
+  },
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
