@@ -2,30 +2,26 @@
   <v-container>
     <h1>演员详情</h1>
     <v-row class="pt-4">名字:{{ name }}</v-row>
-    <v-row>
-      <v-simple-table class="float-left pt-4">
-        <template v-slot:default>
-          <thead>
-            <tr>
-              <th class="text-left">参演电影</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr
-              v-for="item in actor['Film List']"
-              :key="item.name"
-              class="text-left"
-            >
-              <td>
-                <router-link :to="`/film/` + item.FilmId">{{
-                  item.Title
-                }}</router-link>
-              </td>
-            </tr>
-          </tbody>
-        </template>
-      </v-simple-table>
-    </v-row>
+    <v-table>
+      <thead>
+        <tr>
+          <th class="text-left">参演电影</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          v-for="item in actor['Film List']"
+          :key="item.name"
+          class="text-left"
+        >
+          <td>
+            <router-link :to="`/film/` + item.FilmId">{{
+              item.Title
+            }}</router-link>
+          </td>
+        </tr>
+      </tbody>
+    </v-table>
   </v-container>
 </template>
 
