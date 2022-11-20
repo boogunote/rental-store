@@ -6,6 +6,10 @@ describe("<ActorDetail />", () => {
       fixture: "actor.json",
     }).as("getActor");
     // see: https://test-utils.vuejs.org/guide/
-    cy.mount(ActorDetail);
+    cy.mount(ActorDetail, {
+      props: {
+        id: "1",
+      },
+    });
   });
 });

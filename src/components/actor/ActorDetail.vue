@@ -34,16 +34,14 @@ import { getRentalStoreApi } from "@/utils/utils";
 import { onMounted, ref } from "vue";
 export default {
   name: "ActorDetail",
-  created() {},
-  data() {
-    return {};
+  props: {
+    id: String,
   },
-  props: {},
-  methods: {},
-  setup() {
+  setup(props) {
     const actor = ref({} as any);
     onMounted(async () => {
-      const resp = await getRentalStoreApi().actorRead("1");
+      if (!props.id) return;
+      const resp = await getRentalStoreApi().actorRead(props.id);
       console.log(resp.data);
       actor.value = resp.data;
     });
