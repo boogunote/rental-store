@@ -1,9 +1,12 @@
 <template>
-  <v-app>
-    <v-navigation-drawer app>
+  <v-app :theme="theme">
+    <v-navigation-drawer v-model="drawer">
       <v-list>
         <v-list-item>
           <router-link to="/">Home</router-link>
+        </v-list-item>
+        <v-list-item>
+          <router-link to="/actor">Actor</router-link>
         </v-list-item>
         <v-list-item>
           <router-link to="/about">About</router-link>
@@ -11,44 +14,34 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app>
-      <!-- -->
+    <v-app-bar>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-spacer></v-spacer>
+      <v-btn
+        :prepend-icon="
+          theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'
+        "
+        @click="onClick"
+        >Toggle Theme</v-btn
+      >
     </v-app-bar>
 
-    <!-- 根据应用组件来调整你的内容 -->
     <v-main>
-      <!-- 给应用提供合适的间距 -->
-      <v-container fluid>
-        <!-- 如果使用 vue-router -->
+      <v-container>
         <router-view></router-view>
       </v-container>
     </v-main>
-
-    <v-footer app>
-      <!-- -->
-    </v-footer>
   </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script setup>
+import { ref } from "vue";
+
+const theme = ref("light");
+
+function onClick() {
+  theme.value = theme.value === "light" ? "dark" : "light";
 }
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+let drawer = ref(null);
+</script>

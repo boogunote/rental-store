@@ -22,7 +22,7 @@ import "./commands";
 // Vuetify 3
 // Styles
 // import "@mdi/font/css/materialdesignicons.css";
-import "@/assets/main.css";
+// import "@/assets/main.css";
 import router from "../../src/router";
 import "vuetify/styles";
 import { createVuetify } from "vuetify";
