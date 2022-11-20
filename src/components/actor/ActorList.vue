@@ -8,14 +8,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="item in list" :key="item.FirstName">
+        <tr v-for="item in list" :key="item['ActorId']">
           <td>
-            <router-link :to="`/actor/` + item.ActorId">{{
-              item.FirstName
+            <router-link :to="`/actor/` + item['ActorId']">{{
+              item["FirstName"]
             }}</router-link>
           </td>
           <td></td>
-          <td>{{ item.LastName }}</td>
+          <td>{{ item["LastName"] }}</td>
         </tr>
       </tbody>
     </template>
