@@ -23,10 +23,12 @@ import "./commands";
 // Styles
 // import "@mdi/font/css/materialdesignicons.css";
 import "@/assets/main.css";
+import router from "../../src/router";
 import "vuetify/styles";
 import { createVuetify } from "vuetify";
 import * as components from "vuetify/components";
 import * as directives from "vuetify/directives";
+import { createMemoryHistory, createRouter } from "vue-router";
 
 import { mount } from "cypress/vue";
 
@@ -57,12 +59,31 @@ Cypress.Commands.add("mount", (MountedComponent: any, options) => {
   // // Vuetify selector used for popup elements to attach to the DOM
   // root.setAttribute("data-app", "true");
 
-  return mount(MountedComponent, {
-    global: {
-      plugins: [vuetify],
+  // Setup options object
+  options = options || {};
+  options.global = options.global || {};
+  options.global.plugins = options.global.plugins || [];
+
+  options.global.plugins.push(vuetify);
+
+  // create router if one is not provided
+  // eslint-disable-next-line no-debugger
+  // debugger;
+  if (!options.router) {
+    options.router = createRouter({
+      routes: router.options.routes,
+      history: createMemoryHistory(),
+    });
+  }
+
+  // Add router plugin
+  options.global.plugins.push({
+    install(app) {
+      app.use(options.router);
     },
-    ...options, // To override values for specific tests
   });
+
+  return mount(MountedComponent, options);
 });
 
 // Example use:
