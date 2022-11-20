@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <v-container>
     <h1>演员详情</h1>
-    <v-row no-gutters>Name:{{ name }}</v-row>
+    <v-row class="pt-4">名字:{{ name }}</v-row>
     <v-row>
       <v-simple-table class="float-left pt-4">
         <template v-slot:default>
@@ -17,7 +17,7 @@
               class="text-left"
             >
               <td>
-                <router-link :to="`/file/` + item.FilmId">{{
+                <router-link :to="`/film/` + item.FilmId">{{
                   item.Title
                 }}</router-link>
               </td>
@@ -26,7 +26,7 @@
         </template>
       </v-simple-table>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script lang="ts">

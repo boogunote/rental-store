@@ -14,12 +14,21 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-import { mount } from 'cypress/vue'
+// Vuetify 3
+// Styles
+// import "@mdi/font/css/materialdesignicons.css";
+import "@/assets/main.css";
+import "vuetify/styles";
+import { createVuetify } from "vuetify";
+import * as components from "vuetify/components";
+import * as directives from "vuetify/directives";
+
+import { mount } from "cypress/vue";
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
@@ -28,12 +37,33 @@ import { mount } from 'cypress/vue'
 declare global {
   namespace Cypress {
     interface Chainable {
-      mount: typeof mount
+      mount: typeof mount;
     }
   }
 }
 
-Cypress.Commands.add('mount', mount)
+const vuetify = createVuetify({
+  components,
+  directives,
+});
+
+Cypress.Commands.add("mount", (MountedComponent: any, options) => {
+  // const root: any = document.getElementById("__cy_vue_root");
+  // debugger;
+  // // Vuetify styling
+  // if (!root.classList.contains("v-application")) {
+  //   root.classList.add("v-application");
+  // }
+  // // Vuetify selector used for popup elements to attach to the DOM
+  // root.setAttribute("data-app", "true");
+
+  return mount(MountedComponent, {
+    global: {
+      plugins: [vuetify],
+    },
+    ...options, // To override values for specific tests
+  });
+});
 
 // Example use:
 // cy.mount(MyComponent)
