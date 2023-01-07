@@ -1,7 +1,7 @@
 <template>
-  <div class="home">
+  <v-navigation-drawer permanent>
     <ActorList />
-  </div>
+  </v-navigation-drawer>
 </template>
 
 <script lang="ts">
