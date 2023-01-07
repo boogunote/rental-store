@@ -1,8 +1,8 @@
-import AboutView from './AboutView.vue'
+import AboutView from "../AboutView.vue";
 
-describe('<AboutView />', () => {
-  it('renders', () => {
+describe("<AboutView />", () => {
+  it("renders", () => {
     // see: https://test-utils.vuejs.org/guide/
-    cy.mount(AboutView)
-  })
-})
+    cy.mount(AboutView);
+  });
+});
