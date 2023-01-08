@@ -2,18 +2,22 @@
   <v-table>
     <thead>
       <tr>
-        <th class="text-left">FirstName</th>
-        <th class="text-left">LastName</th>
+        <th class="text-left">演员</th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="item in list" :key="item['ActorId']">
         <td>
+          <a href="#" @click="$emit('selectActor', item['ActorId'])">
+            {{ item["FirstName"] + " " + item["LastName"] }}
+          </a>
+        </td>
+        <!-- <td>
           <router-link :to="`/actor/` + item['ActorId']">{{
             item["FirstName"]
           }}</router-link>
         </td>
-        <td>{{ item["LastName"] }}</td>
+        <td>{{ item["LastName"] }}</td> -->
       </tr>
     </tbody>
   </v-table>
@@ -25,6 +29,7 @@ import { defineComponent, onMounted, ref } from "vue";
 
 export default defineComponent({
   name: "ActorList",
+  emits: ["selectActor"],
   setup() {
     const list = ref([]);
     onMounted(async () => {

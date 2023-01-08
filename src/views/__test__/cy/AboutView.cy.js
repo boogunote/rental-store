@@ -1,4 +1,4 @@
-import AboutView from "../AboutView.vue";
+import AboutView from "../../AboutView.vue";
 
 describe("<AboutView />", () => {
   it("renders", () => {

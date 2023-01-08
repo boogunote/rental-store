@@ -1,4 +1,4 @@
-import ActorDetailView from "../ActorDetailView.vue";
+import ActorDetailView from "../../ActorDetailView.vue";
 
 describe("<ActorDetailView />", () => {
   it("renders", () => {

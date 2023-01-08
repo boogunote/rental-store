@@ -37,17 +37,28 @@ export default {
     const actor = ref({} as any);
     onMounted(async () => {
       if (!props.id) return;
-      const resp = await getRentalStoreApi().actorRead(props.id);
+      await getData(props.id);
+    });
+
+    const getData = async (id: string): Promise<void> => {
+      const resp = await getRentalStoreApi().actorRead(id);
       console.log(resp.data);
       actor.value = resp.data;
-    });
+    };
     return {
       actor,
+      getData,
     };
   },
   computed: {
     name(): string {
       return this.actor.FirstName + " " + this.actor.LastName;
+    },
+  },
+  watch: {
+    async id(newId, oldId) {
+      console.log(newId);
+      await this.getData(newId);
     },
   },
 };

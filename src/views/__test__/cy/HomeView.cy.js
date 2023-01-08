@@ -1,4 +1,4 @@
-import HomeView from "../HomeView.vue";
+import HomeView from "../../HomeView.vue";
 
 describe("<HomeView />", () => {
   it("renders", () => {

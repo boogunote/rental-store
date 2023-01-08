@@ -1,4 +1,4 @@
-import ActorList from "../ActorList.vue";
+import ActorList from "../../ActorList.vue";
 
 describe("<ActorList />", () => {
   it("renders", () => {
